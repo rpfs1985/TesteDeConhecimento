@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TESTE_DE_CONHECIMENTOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Atividades">
+          <Key>
+            <PropertyRef Name="CodAtv" />
+          </Key>
+          <Property Name="CodAtv" Type="int" Nullable="false" />
+          <Property Name="DescAtv" Type="varchar(max)" Nullable="false" />
+          <Property Name="Vagas" Type="int" Nullable="false" />
+          <Property Name="Preco" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AxParticipanteAtividade">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="CodPar" Type="int" Nullable="false" />
+          <Property Name="CodAtv" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AxParticipantePacote">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="CodPar" Type="int" Nullable="false" />
+          <Property Name="CodPac" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pacotes">
+          <Key>
+            <PropertyRef Name="CodPac" />
+          </Key>
+          <Property Name="CodPac" Type="int" Nullable="false" />
+          <Property Name="Preco" Type="float" Nullable="false" />
+          <Property Name="Descricao" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Participantes">
+          <Key>
+            <PropertyRef Name="CodPar" />
+          </Key>
+          <Property Name="CodPar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar(max)" Nullable="false" />
+          <Property Name="DataNascimento" Type="datetime" Nullable="false" />
+          <Property Name="Telefone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Categoria" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TESTE_DE_CONHECIMENTOModelStoreContainer">
+          <EntitySet Name="Atividades" EntityType="Self.Atividades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AxParticipanteAtividade" EntityType="Self.AxParticipanteAtividade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AxParticipantePacote" EntityType="Self.AxParticipantePacote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pacotes" EntityType="Self.Pacotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Participantes" EntityType="Self.Participantes" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TESTE_DE_CONHECIMENTOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Atividade">
+          <Key>
+            <PropertyRef Name="CodAtv" />
+          </Key>
+          <Property Name="CodAtv" Type="Int32" Nullable="false" />
+          <Property Name="DescAtv" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Vagas" Type="Int32" Nullable="false" />
+          <Property Name="Preco" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AxParticipanteAtividade">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="CodPar" Type="Int32" Nullable="false" />
+          <Property Name="CodAtv" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="AxParticipantePacote">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="CodPar" Type="Int32" Nullable="false" />
+          <Property Name="CodPac" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Pacote">
+          <Key>
+            <PropertyRef Name="CodPac" />
+          </Key>
+          <Property Name="CodPac" Type="Int32" Nullable="false" />
+          <Property Name="Preco" Type="Double" Nullable="false" />
+          <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Participante">
+          <Key>
+            <PropertyRef Name="CodPar" />
+          </Key>
+          <Property Name="CodPar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataNascimento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Categoria" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TESTE_DE_CONHECIMENTOEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Atividades" EntityType="Self.Atividade" />
+          <EntitySet Name="AxParticipanteAtividades" EntityType="Self.AxParticipanteAtividade" />
+          <EntitySet Name="AxParticipantePacotes" EntityType="Self.AxParticipantePacote" />
+          <EntitySet Name="Pacotes" EntityType="Self.Pacote" />
+          <EntitySet Name="Participantes" EntityType="Self.Participante" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TESTE_DE_CONHECIMENTOModelStoreContainer" CdmEntityContainer="TESTE_DE_CONHECIMENTOEntities1">
+          <EntitySetMapping Name="Atividades">
+            <EntityTypeMapping TypeName="TESTE_DE_CONHECIMENTOModel.Atividade">
+              <MappingFragment StoreEntitySet="Atividades">
+                <ScalarProperty Name="CodAtv" ColumnName="CodAtv" />
+                <ScalarProperty Name="DescAtv" ColumnName="DescAtv" />
+                <ScalarProperty Name="Vagas" ColumnName="Vagas" />
+                <ScalarProperty Name="Preco" ColumnName="Preco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AxParticipanteAtividades">
+            <EntityTypeMapping TypeName="TESTE_DE_CONHECIMENTOModel.AxParticipanteAtividade">
+              <MappingFragment StoreEntitySet="AxParticipanteAtividade">
+                <ScalarProperty Name="CodPar" ColumnName="CodPar" />
+                <ScalarProperty Name="CodAtv" ColumnName="CodAtv" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AxParticipantePacotes">
+            <EntityTypeMapping TypeName="TESTE_DE_CONHECIMENTOModel.AxParticipantePacote">
+              <MappingFragment StoreEntitySet="AxParticipantePacote">
+                <ScalarProperty Name="CodPar" ColumnName="CodPar" />
+                <ScalarProperty Name="CodPac" ColumnName="CodPac" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacotes">
+            <EntityTypeMapping TypeName="TESTE_DE_CONHECIMENTOModel.Pacote">
+              <MappingFragment StoreEntitySet="Pacotes">
+                <ScalarProperty Name="CodPac" ColumnName="CodPac" />
+                <ScalarProperty Name="Preco" ColumnName="Preco" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Participantes">
+            <EntityTypeMapping TypeName="TESTE_DE_CONHECIMENTOModel.Participante">
+              <MappingFragment StoreEntitySet="Participantes">
+                <ScalarProperty Name="CodPar" ColumnName="CodPar" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

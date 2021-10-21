@@ -1,0 +1,141 @@
+﻿@model TesteDeConhecimento.Models.InscricaoCadastroViewModel
+
+@{
+    ViewBag.Title = "Página Principal";
+}
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Formulário de Inscrição</h2>
+    </div>
+
+</div>
+
+@using (Html.BeginForm("Inscricao", "Home", FormMethod.Post, new { @class = "", @id= "form-inscricao", @name = "form-inscricao" }))
+{
+<div class="row">
+    <label for="Nome">Nome</label>
+    <div class="form-group">
+
+        <div class="col-md-12">
+
+            @Html.TextBoxFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <label for="DataNascimento">Data de Nascimento</label>
+    <div class="form-group">
+
+        <div class="col-md-12">
+
+            @Html.TextBoxFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <label for="Nome">Telefone</label>
+    <div class="form-group">
+        <div class="col-md-12">
+
+            @Html.TextBoxFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <label for="Pacotes">Pacote</label>
+    <div class="form-group">
+
+        <div class="col-md-12">
+
+            @Html.DropDownListFor(model => model.Pacotes, Model.Pacotes, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <fieldset>
+        <legend>Atividades</legend>
+        @for (int i = 0; i < Model.Atividades.Count; i++)
+        {
+    <p>
+        <input type="checkbox" value="@Model.Atividades[i].CodAtv" name="Atividades" id="Atividades" data-texto="@Model.Atividades[i].Descricao" /> @Model.Atividades[i].Descricao
+        
+
+    </p>
+        }
+    </fieldset>
+    <input type="hidden" id="hdd-submit-frm" value="N" />
+</div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    }
+
+
+<div class="modal" tabindex="-1" role="dialog" id="modal-confirma">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-confirma-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn-salva">Salvar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript" src="~/Scripts/jquery.mask.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#DataNascimento').mask('00/00/0000');
+                $('#Telefone').mask('(99)999999-9999');
+            });
+
+            $(document).on('click', '#btn-salva', function (event) {
+                $('#form-inscricao').submit();
+            });
+
+            $(document).on('submit', '#form-inscricao', function (event) {
+                event.preventDefault();
+
+                if ($('#hdd-submit-frm').val() == 'S') {
+                    this.submit();
+                }
+
+                $('#hdd-submit-frm').val('S');
+                var checks = [];
+                $(':checkbox:checked').each(function (i) {
+                    checks[i] = $(this).data('texto');
+                });
+
+                var $html = '';
+                $html += '<h2>Confirma a Inclusão Dos Dados Abaixo?</h2>';
+                $html += '<p><b>Nome:</b>  ' + $('#Nome').val() + '</p><br />';
+                $html += '<p><b>Data de Nascimento:</b>  ' + $('#DataNascimento').val() + '</p><br />';
+                $html += '<p><b>Telefone:</b>  ' + $('#Telefone').val() + '</p><br />';
+                $html += '<p><b>Pacote:</b>  ' + $("#Pacotes option:selected").text(); + '</p><br />';
+                for (var i = 0; i < checks.length ; i++) {
+                    $html += '<p><b>Atividade:</b>  ' + checks[i] + '</p><br />';
+                }
+                $('#hdd-submit-frm').val('S');
+                $('#modal-confirma-body').html($html);
+                $('#modal-confirma').modal('show');
+                return false;
+            });
+        </script>
+    }
